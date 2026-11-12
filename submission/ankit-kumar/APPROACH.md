@@ -35,6 +35,19 @@ I plan to divide the test scenarios into the following areas.
 - Verify HTTP status codes and error responses.
 - Validate webhook requests with valid and invalid signatures.
 
+**API Contracts**
+
+The service fixture will expose the following endpoints:
+
+- POST /subscriptions – Create a subscription.
+- GET /subscriptions/{id} – Retrieve subscription details.
+- POST /subscriptions/{id}/cancel – Cancel a subscription.
+- POST /webhooks/payment-provider – Receive payment provider webhook events.
+
+Subscription creation will accept customer_id, plan and payment_method_id.
+
+Webhook requests will contain event_id, event type, subscription_id, invoice_id, amount and currency. The X-Provider-Signature header will be used for signature validation.
+
 **Subscription Lifecycle Testing**
 - Verify all valid transitions between trialing, active, past_due and canceled.
 - Verify that invalid state transitions are rejected or safely ignored.
